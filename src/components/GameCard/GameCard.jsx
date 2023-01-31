@@ -2,12 +2,12 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 
-function GameCard() {
+function GameCard({game}) {
     return ( 
         <Card>
         <Card.Content textAlign="left">
           <Card.Header>
-            This is the header
+            {game.name}
           </Card.Header>
         </Card.Content>
 

@@ -22,46 +22,14 @@ const commentsSchema = new mongoose.Schema({
   }
 )
 
-const games = [
-    {
-        id: 1,
-        name: 'Uno',
-        imgSrc: 'https://i.imgur.com/bUgSIB1.png',
-        decsription: 
-            'Game description here',
-        rules: 
-            'Game rules here',
-        comments: [commentsSchema]
-    },
-    {
-        id: 2,
-        name: 'Golf',
-        imgSrc: 'https://i.imgur.com/bUgSIB1.png',
-        decsription: 
-            'Game description here',
-        rules: 
-            'Game rules here',
-        comments: [commentsSchema]
-    },
-    {id: 3,
-        name: 'Beer Pong',
-        imgSrc: 'https://i.imgur.com/bUgSIB1.png',
-        decsription: 
-            'Game description here',
-        rules: 
-            'Game rules here',
-        comments: [commentsSchema]
-    },
-    {
-        id: 4,
-        name: 'Uno',
-        imgSrc: 'https://i.imgur.com/bUgSIB1.png',
-        decsription: 
-            'Game description here',
-        rules: 
-            'Game rules here',
-        comments: [commentsSchema]
-    },
-];
-
-export default ('Game', games);
+const gamesSchema = new mongoose.Schema({
+    gameId: {type: mongoose.Schema.Types.ObjectId},
+    name: String,
+    imgSrc: String, 
+    description: String,
+    rules: String,
+    comments: [commentsSchema],
+  }, 
+  );
+  
+export default mongoose.model('Game', gamesSchema);

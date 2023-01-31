@@ -4,9 +4,18 @@ import GameCard from "../GameCard/GameCard";
 
 
 
-function GameDisplay() {
+function GameDisplay({games}) {
     return ( 
-        <GameCard />
+        <Card.Group itemsPerRow={3} stackable>
+        {games.map((game) => {
+          return (
+            <GameCard
+              game={game}
+              key={game._id}
+            />
+          );
+        })}
+      </Card.Group>
      );
 }
 

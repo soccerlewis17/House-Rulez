@@ -33,9 +33,11 @@ app.use(auth);
 import userRoutes from './routes/api/users.js';
 import likeRoutes from './routes/api/likes.js';
 import commentRoutes from './routes/api/comments.js';
+import gameRoutes from './routes/api/games.js';
 
 app.use('/api/users', userRoutes);
-// app.use('') /// Comment route needs updated //////////////////
+app.use('/games', gameRoutes);
+app.use('/', commentRoutes);
 app.use('/api', likeRoutes);
 // "catch all" route
 app.get('/*', function(req, res) {
