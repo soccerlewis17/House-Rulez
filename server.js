@@ -35,7 +35,7 @@ import likeRoutes from './routes/api/likes.js';
 import commentRoutes from './routes/api/comments.js';
 
 app.use('/api/users', userRoutes);
-app.use('') /// Comment route needs updated //////////////////
+// app.use('') /// Comment route needs updated //////////////////
 app.use('/api', likeRoutes);
 // "catch all" route
 app.get('/*', function(req, res) {

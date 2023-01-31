@@ -1,41 +1,39 @@
-const Game = require('../models/game');
+import Game from '../models/game.js';
 
-module.exports = {
+export default {
     create,
     delete: deleteComment,
     update
 }
 
 function update(req, res) {
-    Game.findOne({'comments._id': req.params.id}, function(err, requestDoc) {
-        console.log(requestDoc, '=============== requestDoc from update function =========');
-      const commentSubdoc = requestDoc.comments.id(req.params.id);
-      if (!commentSubdoc.user.equals(req.user._id)) return res.redirect(`/requests/${requestDoc._id}`);
+    Game.findOne({'comments._id': req.params.id}, function(err, gameDoc) {
+        console.log(gameDoc, '=============== requestDoc from update function =========');
+      const commentSubdoc = gameDoc.comments.id(req.params.id);
+      if (!commentSubdoc.user.equals(req.user._id)) return res.json(`/games/${gameDoc._id}`);
       commentSubdoc.content = req.body.content;
-      requestDoc.save(function(err) {
-        // res.redirect(`/requests/${requestDoc._id}`);
-        // above has to be JSON
+      gameDoc.save(function(err) {
+        res.json(`/games/${gameDoc._id}`);
       });
     });
   }
 
 
 function deleteComment(req, res){
-    Game.findOne({'comments._id': req.params.id, 'comments.user': req.user._id}, function (err, requestDoc) {
-        if (!requestDoc) return res.redirect('/requests');
+    Game.findOne({'comments._id': req.params.id, 'comments.user': req.user._id}, function (err, gameDoc) {
+        if (!gameDoc) return res.json('/games');
 
-        requestDoc.comments.remove(req.params.id);
+        gameDoc.comments.remove(req.params.id);
 
-        requestDoc.save(function(err){
+        gameDoc.save(function(err){
             if(err) return res.send('err, check terminal fix this');
-            // res.redirect(`/requests/${requestDoc._id}`)
-            // above has to be JSON
+            res.json(`/games/${gameDoc._id}`)
           })
     })
 }
 
 function create(req, res){
-    Game.findById(req.params.id, function (err, requestDoc) {
+    Game.findById(req.params.id, function (err, gameDoc) {
         if (err) {
           console.log(err);
           return res.send("error from create comments, check the terminal");
@@ -43,11 +41,10 @@ function create(req, res){
         req.body.user = req.user._id;
         req.body.userName = req.user.name;
         req.body.userAvatar = req.user.avatar;
-        requestDoc.comments.push(req.body);
-        requestDoc.save(function (err) {
-          console.log(err, " <_ err from requestDoc.save callback")
-        //   res.redirect(`/requests/${req.params.id}`);
-        // above has to be JSON
+        gameDoc.comments.push(req.body);
+        gameDoc.save(function (err) {
+        console.log(err, " <_ err from gameDoc.save callback")
+        res.json(`/games/${req.params.id}`);
         });
       });
 }

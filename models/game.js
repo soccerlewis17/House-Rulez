@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 
 const likesSchema = mongoose.Schema({
     username: String,
@@ -61,3 +63,5 @@ const games = [
         comments: [commentsSchema]
     },
 ];
+
+export default ('Game', games);
