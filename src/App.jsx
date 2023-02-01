@@ -22,7 +22,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
         <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-        <Route path="/:id" loggedUser={user} element={<GamePage />} />
+        <Route path="/:gameId" loggedUser={user} element={<GamePage />} />
       </Routes>
     );
   }

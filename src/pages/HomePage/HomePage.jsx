@@ -46,7 +46,10 @@ export default function HomePage(props){
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
-                    <GameDisplay games={games}/>
+                    <GameDisplay 
+                        games={games}
+                        isHome={true}
+                    />
                 </Grid.Column>
             </Grid.Row>
         </Grid>

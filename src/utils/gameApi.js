@@ -27,6 +27,6 @@ export function getOneGame(gameId) {
     }).then(res => {
         if(res.ok) return res.json()
         console.log(res, ' <------ this is the response from the server!')
-        throw new Error('Error creating a like, check server terminal')
+        throw new Error('Error getting one game, check server terminal')
     })
 }
