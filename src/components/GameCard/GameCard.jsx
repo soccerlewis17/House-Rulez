@@ -16,7 +16,7 @@ function GameCard({game}) {
         </Card.Description>
       </Card.Content>
       <Card.Content textAlign="left">
-        <Card.Description>{game._id}{game.description}</Card.Description>
+        <Card.Description>{game.description}</Card.Description>
         <Icon name={"heart"} size="large" color='red'/>
         100 Likes
       </Card.Content>
