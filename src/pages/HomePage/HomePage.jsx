@@ -40,12 +40,12 @@ export default function HomePage(props){
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid.Column textAlign='center'>
                     <AppDescription />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid.Column>
                     <GameDisplay games={games}/>
                 </Grid.Column>
             </Grid.Row>

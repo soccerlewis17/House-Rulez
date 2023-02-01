@@ -3,7 +3,7 @@
 function AppDescription() {
     return ( 
         <h3>
-            This is an app for board games stuff and I will write this out better at a later time.
+            Discover the original rules for common games, or try using "House Rulez" variations!
         </h3>
      );
 }

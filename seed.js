@@ -11,8 +11,8 @@ const seedGames = [
     id: 1,
     name: "UNO",
     imgSrc: "https://i.imgur.com/aBsKCXH.png",
-    decsription:
-      "UNO is a multi-player card game in which the objective is to be the first player to get rid of all the cards in their hand. Each player is dealt 7 cards and players take turn drawing cards from the deck.",
+    description:
+      "UNO is a multi-player card game in which the objective is to be the first player to score 500 points. Each player is dealt 7 cards and tries to get rid of them all each round.",
     rules: `The objective of the game is to be the first player to score 500 points. The objective of each round is to be the first person to play all the cards in your hand.
     Special Cards
     SKIP - As the name says, it causes the next person to skip their chance. If you are playing in 2 then immediately it will be your chance again. You can throw skip only on skip cards or similar colors.
@@ -45,24 +45,40 @@ const seedGames = [
   {
     id: 2,
     name: "Golf",
-    imgSrc: "https://i.imgur.com/bUgSIB1.png",
-    decsription: "Game description here",
-    rules: "Game rules here",
+    imgSrc: "https://i.imgur.com/JuhJS94.png",
+    description: "Golf is a game in which players try to swap and cancel their cards for the lowest overall score.",
+    rules: `
+    Each player is dealt 6 cards face down from the deck. The remainder of the cards are placed face down, and the top card is turned up to start the discard pile beside it. Players arrange their 6 cards in 2 rows of 3 in front of them and turn 2 of these cards face up. The remaining cards stay face down and cannot be looked at.
+    
+    The Play
+    The object is for players to have the lowest value of the cards in front of them by either swapping them for lesser value cards or by pairing them up with cards of equal rank.
+    
+    Beginning with the player to the dealer's left, players take turns drawing single cards from either the stock or discard piles. The drawn card may either be swapped for one of that player's 6 cards, or discarded. If the card is swapped for one of the face down cards, the card swapped in remains face up. The round ends when all of a player's cards are face-up.
+    
+    A game is nine "holes" (deals), and the player with the lowest total score is the winner.
+    
+    Scoring
+    Each ace counts 1 point.
+    Each 2 counts minus 2 points.
+    Each numeral card from 3 to 10 scores face value.
+    Each jack or queen scores 10 points.
+    Each king scores zero points.
+    A pair of equal cards in the same column scores zero points for the column (even if the equal cards are 2s).`,
   },
   {
     id: 3,
     name: "Beer Pong",
-    imgSrc: "https://i.imgur.com/bUgSIB1.png",
-    decsription: "Game description here",
-    rules: "Game rules here",
-  },
-  {
-    id: 4,
-    name: "Uno",
-    imgSrc: "https://i.imgur.com/bUgSIB1.png",
-    decsription: "Game description here",
-    rules: "Game rules here",
-  },
+    imgSrc: "https://i.imgur.com/79a7TbC.jpeg",
+    description: "Beer Pong is a drinking game in which players throw a ping pong ball across a table with the intent of landing the ball in a cup of beer on the other end.",
+    rules: `
+    1. Fill 20 16-oz plastic cups halfway with beer.
+    2. Arrange the plastic cups into a 10-cup triangle at each end of the table. The point of each triangle should face the opposing team. There will be one cup in the first row, two in the second row, three in the third row, and the base of the triangle will have four cups.
+    3. Play one-on-one or with teams of two. Teams of two will take turns throwing the ball each time they get a turn.
+    4. Determine who goes first.
+    5. Take turns throwing the balls into cups. Each team gets to throw one ball per turn. The goal is throw the ball into a cup of the opposing team. You can throw the ball directly into a cup or bounce a ball off of the table into a cup.
+    6. When the ball lands in a cup, alternate drinking the beer between you and your partner—if you drink the first cup, let your partner drink the second. Set the cup aside once you drink it.
+    7. Keep playing until one team has no cups remaining. The team who has no cups loses, and the other team has won.`
+},
 ];
 
 const seedDB = async () => {

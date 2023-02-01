@@ -1,20 +1,22 @@
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, CardDescription, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 
 function GameCard({game}) {
     return ( 
         <Card>
-        <Card.Content textAlign="left">
+        <Card.Content textAlign="center">
           <Card.Header>
             {game.name}
           </Card.Header>
         </Card.Content>
-
       <Card.Content>
-        <Card.Description>This is the card description</Card.Description>
+        <Card.Description textAlign="center">
+            <Image src={game.imgSrc}></Image>
+        </Card.Description>
       </Card.Content>
-      <Card.Content extra textAlign={"right"}>
+      <Card.Content textAlign="left">
+        <Card.Description>{game.description}</Card.Description>
         <Icon name={"heart"} size="large" color='red'/>
         100 Likes
       </Card.Content>

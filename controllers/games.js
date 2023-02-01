@@ -5,22 +5,20 @@ export default {
     show,
 }
 
-function show(req, res) {
-  console.log(req.user, '<---- req.user');
-  console.log(req.session, '<---- req.session');
-
-//   Game.findById(req.params.id, function(err, gameDoc){
-//     res.json('requests/show', {game: gameDoc});
-//   });
+async function show(req, res) {
+    try {
+        const game = await Game.findById(req.params.id)
+        res.status(200).json({ data: game });
+    } catch (err) {
+        res.status(400).json({ err });
+    }
 }
 
-  async function index(req, res) {
+async function index(req, res) {
     try {
       const games = await Game.find({})
-      console.log('index function working')
-      console.log(games, ' <--- games from index controller function')
       res.status(200).json({ data: games });
     } catch (err) {
       res.status(400).json({ err });
     }
-  }
+}

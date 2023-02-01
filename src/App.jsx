@@ -16,12 +16,21 @@ function App() {
     setUser(userService.getUser());
   }
 
+  if (user) {
+    return (
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+        <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+        <Route path="/:id" loggedUser={user} element={<GamePage />} />
+      </Routes>
+    );
+  }
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/game" element={<GamePage />} />
+      <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }
