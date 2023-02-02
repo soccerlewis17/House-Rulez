@@ -36,8 +36,8 @@ import commentRoutes from './routes/api/comments.js';
 import gameRoutes from './routes/api/games.js';
 
 app.use('/api/users', userRoutes);
-app.use('/games', gameRoutes);
-app.use('/', commentRoutes);
+app.use('/api/games', gameRoutes);
+app.use('/api', commentRoutes);
 app.use('/api', likeRoutes);
 // "catch all" route
 app.get('/*', function(req, res) {

@@ -9,7 +9,7 @@ import { Grid } from "semantic-ui-react";
 
 import * as gameAPI from '../../utils/gameApi';
 
-export default function HomePage(props){
+export default function HomePage({handleLogout}){
     const [games, setGames] = useState([]);
 
 
@@ -36,7 +36,7 @@ export default function HomePage(props){
         <Grid centered>
             <Grid.Row>
                 <Grid.Column>
-                    <PageHeader />
+                    <PageHeader handleLogout={handleLogout}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>

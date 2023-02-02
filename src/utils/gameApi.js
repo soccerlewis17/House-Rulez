@@ -1,6 +1,6 @@
 import tokenService from "./tokenService";
 
-const BASE_URL = '/games'
+const BASE_URL = '/api/games'
 
 export function getAllGames() {
     return fetch(`${BASE_URL}/`, { // this route is from the routes file to know where we are going for the create function

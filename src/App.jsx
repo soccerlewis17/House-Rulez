@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -16,20 +16,27 @@ function App() {
     setUser(userService.getUser());
   }
 
+  function handleLogout() {
+
+    console.log('being called')
+    userService.logout();
+    setUser(null);
+  }
+
   if (user) {
     return (
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage handleLogout={handleLogout}/>} />
         <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
         <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-        <Route path="/:gameId" loggedUser={user} element={<GamePage />} />
+        <Route path="/:gameId" loggedUser={user} element={<GamePage handleLogout={handleLogout}/>} />
       </Routes>
     );
   }
   return (
     <Routes>
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );

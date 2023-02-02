@@ -17,8 +17,6 @@ function GameCard({game}) {
       </Card.Content>
       <Card.Content textAlign="left">
         <Card.Description>{game.description}</Card.Description>
-        <Icon name={"heart"} size="large" color='red'/>
-        100 Likes
       </Card.Content>
         </Card>
      );

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Header, Segment, Image, Icon } from "semantic-ui-react";
 
-function PageHeader() {
+function PageHeader({handleLogout}) {
     return ( 
         <Segment>
             <Header textAlign="left">
@@ -16,7 +16,7 @@ function PageHeader() {
                 <Link to='/'>
                     <Icon name="home"></Icon>
                 </Link>
-                Logout
+                <Link to='' onClick={handleLogout}>Logout</Link>
             </Header>
         </Segment>
      );

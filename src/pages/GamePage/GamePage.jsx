@@ -11,7 +11,7 @@ import { Grid } from "semantic-ui-react";
 
 import * as gameAPI from '../../utils/gameApi';
 
-function GamePage() {
+function GamePage({handleLogout}) {
     const [game, setGame] = useState([]);
 
     const { gameId } = useParams();
@@ -37,7 +37,7 @@ function GamePage() {
         <Grid centered>
             <Grid.Row>
                 <Grid.Column>
-                    <PageHeader />
+                    <PageHeader handleLogout={handleLogout}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
