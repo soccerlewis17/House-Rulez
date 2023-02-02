@@ -82,7 +82,7 @@ function GamePage({handleLogout}) {
                     {game.comments?.map((comment) => {
                         return (
                             <div className='card' key={comment._id}>
-                                <h5>{comment.username}</h5>
+                                <h5>{comment.userName}</h5>
                                 <p>{comment.content}</p>
                             </div>
                         )
@@ -90,7 +90,7 @@ function GamePage({handleLogout}) {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column>
+                <Grid.Column style={{ maxWidth: 450 }} textAlign='center'>
                     <AddCommentForm handleAddComment={handleAddComment}/>
                 </Grid.Column>
             </Grid.Row>
