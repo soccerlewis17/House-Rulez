@@ -18,3 +18,18 @@ export function create(comment, gameId) {
         throw new Error('Error creating a comment, check server terminal')
     })
 }
+
+export function deleteComment(commentId) {
+    return fetch(`${BASE_URL}/comments/${commentId}`, { // this route is from the routes file to know where we are going for the create function
+        method: 'DELETE',
+        headers: {
+			Authorization: "Bearer " + tokenService.getToken()
+			//this is how we grab the token from local storage
+		}
+
+    }).then(res => {
+        if(res.ok) return res.json()
+        console.log(res, ' <------ this is the response from the server!')
+        throw new Error('Error deleting a comment, check server terminal')
+    })
+}

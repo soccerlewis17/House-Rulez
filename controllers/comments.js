@@ -19,17 +19,17 @@ function update(req, res) {
   }
 
 
-function deleteComment(req, res){
-    Game.findOne({'comments._id': req.params.id, 'comments.user': req.user._id}, function (err, gameDoc) {
-        if (!gameDoc) return res.json('/games');
+async function deleteComment(req, res){
+    
+    try {
+        const game = await Game.findOne({'comments._id': req.params.id, 'comments.user': req.user._id})
+        game.comments.remove(req.params.id);
+        await game.save()
 
-        gameDoc.comments.remove(req.params.id);
-
-        gameDoc.save(function(err){
-            if(err) return res.send('err, check terminal fix this');
-            res.json(`/games/${gameDoc._id}`)
-          })
-    })
+        res.json({data: 'comment removed'})
+    } catch(err){
+        res.status(400).json({err})
+    }
 }
 
 async function create(req, res){

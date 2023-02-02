@@ -44,6 +44,14 @@ function GamePage({handleLogout}) {
         }
     }
 
+    async function handleDeleteComment(commentId) {
+        try {
+            const response = await commentAPI.deleteComment(commentId);
+            setComments([response.comments]);
+        } catch(err) {
+            console.log(err.message, "error in deleteComment");
+        }
+    }
 
     return ( 
         <Grid centered>
@@ -82,8 +90,14 @@ function GamePage({handleLogout}) {
                     {game.comments?.map((comment) => {
                         return (
                             <div className='card' key={comment._id}>
-                                <h5>{comment.userName}</h5>
-                                <p>{comment.content}</p>
+                                    <h5>{comment.userName}</h5>
+                                    <p>{comment.content}</p>
+                                    <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button>
+
+
+                                    {/* { user === comment.user ?
+                                        <button onClick={handleDeleteComment}>Delete Comment</button> : ''
+                                    } */}
                             </div>
                         )
                     })}
