@@ -44,7 +44,7 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const { PORT = 8000 } = process.env;
+const { PORT } = process.env;
 app.listen(PORT, () => {
   console.log();
   console.log(`  App running in port ${PORT}`);

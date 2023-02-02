@@ -32,19 +32,20 @@ function deleteComment(req, res){
     })
 }
 
-function create(req, res){
-    Game.findById(req.params.id, function (err, gameDoc) {
-        if (err) {
-          console.log(err);
-          return res.send("error from create comments, check the terminal");
-        }
+async function create(req, res){
+    console.log(req.user, " <- req.user", req.body)
+
+    try {
+      // adding our post information to the database
+      const game = await Game.findById(req.params.id)
         req.body.user = req.user._id;
-        req.body.userName = req.user.name;
-        req.body.userAvatar = req.user.avatar;
-        gameDoc.comments.push(req.body);
-        gameDoc.save(function (err) {
-        console.log(err, " <_ err from gameDoc.save callback")
-        res.json(`/games/${req.params.id}`);
-        });
-      });
+        req.body.userName = req.user.username;
+        game.comments.push(req.body);
+        game.save();
+
+      res.status(201).json({game})
+
+    } catch(err){
+      res.status(400).json({err})
+    }
 }

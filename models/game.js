@@ -8,8 +8,8 @@ const likesSchema = mongoose.Schema({
 
   // A comment has many likes, a like belongs to a comment
 const commentsSchema = new mongoose.Schema({
+    commentId: {type: mongoose.Schema.Types.ObjectId},
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}, // referencing a model
-    userAvatar: String,
     userName: {type: String, required: true},
     content: {type: String, required: true},
     likes: [likesSchema] // embedded schema// One Post has many Likes!
@@ -31,5 +31,5 @@ const gamesSchema = new mongoose.Schema({
     comments: [commentsSchema],
   }, 
   );
-  
+
 export default mongoose.model('Game', gamesSchema);

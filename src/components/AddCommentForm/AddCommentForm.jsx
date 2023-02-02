@@ -2,7 +2,7 @@ import { set } from "mongoose";
 import { useState } from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
 
-function AddCommentForm() {
+function AddCommentForm({handleAddComment}) {
 
   const [comment, setComment] = useState('');
 
@@ -12,8 +12,7 @@ function AddCommentForm() {
 
   function handleSubmit(e){
 	e.preventDefault();
-    console.log(comment)
-	
+    handleAddComment(comment)
   }
 
   return (

@@ -10,9 +10,11 @@ import { useParams } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 
 import * as gameAPI from '../../utils/gameApi';
+import * as commentAPI from '../../utils/commentApi';
 
 function GamePage({handleLogout}) {
     const [game, setGame] = useState([]);
+    const [comments, setComments] = useState([]);
 
     const { gameId } = useParams();
 
@@ -31,6 +33,16 @@ function GamePage({handleLogout}) {
       useEffect(() => {
         getAGame();
       }, []);
+
+    async function handleAddComment(comment){
+        try {
+            const response = await commentAPI.create(comment, gameId); // need gameId???
+            console.log(response, " handle add comment");
+            setComments([response.comments, ...comments]);
+        } catch(err) {
+            console.log(err.message, "error in addComment");
+        }
+    }
 
 
     return ( 
@@ -67,12 +79,19 @@ function GamePage({handleLogout}) {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column textAlign='center'>
-                    <p>Comments will go here</p>
+                    {game.comments?.map((comment) => {
+                        return (
+                            <div className='card' key={comment._id}>
+                                <h5>{comment.username}</h5>
+                                <p>{comment.content}</p>
+                            </div>
+                        )
+                    })}
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
-                    <AddCommentForm />
+                    <AddCommentForm handleAddComment={handleAddComment}/>
                 </Grid.Column>
             </Grid.Row>
         </Grid>
