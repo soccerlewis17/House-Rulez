@@ -13,6 +13,7 @@ function AddCommentForm({handleAddComment}) {
   function handleSubmit(e){
 	e.preventDefault();
     handleAddComment(comment)
+    setComment('')
   }
 
   return (
@@ -23,6 +24,7 @@ function AddCommentForm({handleAddComment}) {
           name="content"
           placeholder="Add Your House Rulez Here!"
           onChange={handleChange}
+          value={comment}
           required
         />
         <Button type="submit" className="btn">

@@ -7,14 +7,15 @@ import { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
+import { useImmer } from 'use-immer';
+
 import { Grid } from "semantic-ui-react";
 
 import * as gameAPI from '../../utils/gameApi';
 import * as commentAPI from '../../utils/commentApi';
 
 function GamePage({handleLogout}) {
-    const [game, setGame] = useState([]);
-    const [comments, setComments] = useState([]);
+    const [game, updateGame] = useImmer([]);
 
     const { gameId } = useParams();
 
@@ -22,7 +23,7 @@ function GamePage({handleLogout}) {
         try {
           const response = await gameAPI.getOneGame(gameId);
           console.log(response, " data");
-          setGame(response.data);
+          updateGame(response.data);
         // could add loading stuff
         } catch (err) {
           console.log(err.message, " this is the error in getOneGame");
@@ -38,16 +39,19 @@ function GamePage({handleLogout}) {
         try {
             const response = await commentAPI.create(comment, gameId); // need gameId???
             console.log(response, " handle add comment");
-            setComments([response.comments, ...comments]);
+            updateGame(response.game)
         } catch(err) {
             console.log(err.message, "error in addComment");
         }
     }
 
-    async function handleDeleteComment(commentId) {
+    async function handleDeleteComment(commentId, index) {
         try {
             const response = await commentAPI.deleteComment(commentId);
-            setComments([response.comments]);
+            updateGame(draft => {
+                draft.comments.splice(index,1)
+                }
+            );
         } catch(err) {
             console.log(err.message, "error in deleteComment");
         }
@@ -87,12 +91,13 @@ function GamePage({handleLogout}) {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column textAlign='center'>
-                    {game.comments?.map((comment) => {
+                    {game.comments?.map((comment, index) => {
                         return (
                             <div className='card' key={comment._id}>
                                     <h5>{comment.userName}</h5>
-                                    <p>{comment.content}</p>
-                                    <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button>
+                                    <div>
+                                        <p>{comment.content}</p><button onClick={() => handleDeleteComment(comment._id, index)}>X</button>
+                                    </div>
 
 
                                     {/* { user === comment.user ?

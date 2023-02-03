@@ -25,8 +25,7 @@ async function deleteComment(req, res){
         const game = await Game.findOne({'comments._id': req.params.id, 'comments.user': req.user._id})
         game.comments.remove(req.params.id);
         await game.save()
-
-        res.json({data: 'comment removed'})
+        res.json({game: 'comment removed'})
     } catch(err){
         res.status(400).json({err})
     }
