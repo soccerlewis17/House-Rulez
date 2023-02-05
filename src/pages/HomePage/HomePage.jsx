@@ -33,7 +33,7 @@ export default function HomePage({handleLogout}){
 
 
     return (
-        <Grid centered>
+        <Grid centered className='test'>
             <Grid.Row>
                 <Grid.Column>
                     <PageHeader handleLogout={handleLogout}/>
@@ -54,4 +54,5 @@ export default function HomePage({handleLogout}){
             </Grid.Row>
         </Grid>
       );
+
 }
