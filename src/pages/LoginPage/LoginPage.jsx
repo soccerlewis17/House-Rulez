@@ -47,7 +47,7 @@ export default function LoginPage(props) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "100vh", width: "100vw" }}
+      style={{ height: "100vh"}}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
